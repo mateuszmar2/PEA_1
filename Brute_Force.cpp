@@ -11,7 +11,7 @@ void BruteForce::bruteForce()
     int minimum = INT_MAX;
     vector<int> temp;
     for (int i = 0; i < number_of_towns; i++)
-        temp.push_back(i);
+        temp.push_back(i); // wypełnienie vectora indeksami miast
 
     do
     {
@@ -20,17 +20,18 @@ void BruteForce::bruteForce()
         for (int i = 0; i < temp.size() - 1; i++)
         {
             path_distance += matrix[temp[i]][temp[i + 1]];
-            if (path_distance > minimum)
-                goto continue_outer;
+            if (path_distance > minimum) // jeśli obliczona odległość już jest większa niż minimalna
+                goto continue_outer;     // to przerywamy liczenie
         }
-        path_distance += matrix[temp.back()][0];
-        if (pathDistance(temp) < minimum)
+        path_distance += matrix[temp.back()][0]; // dodanie odległości do wierzchołka początkowego
+        if (path_distance < minimum)             // jeśli jest to nowa najlepsza trasa
         {
-            minimum = pathDistance(temp);
+            minimum = path_distance;
+            route_cost = path_distance;
             route = temp;
         }
     continue_outer:;
-    } while (next_permutation(temp.begin() + 1, temp.end()));
+    } while (next_permutation(temp.begin() + 1, temp.end())); // dopóki nie przerobimy wszystkich permutacji
 }
 
 void BruteForce::printRoute()
@@ -38,5 +39,5 @@ void BruteForce::printRoute()
     for (auto i = 0; i < route.size(); i++)
         cout << route[i] << " -> ";
     cout << route[0] << endl;
-    cout << "Cost = " << pathDistance(route) << endl;
+    cout << "Cost = " << route_cost << endl;
 }
