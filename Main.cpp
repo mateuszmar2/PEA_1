@@ -1,7 +1,10 @@
 #include "Towns.h"
 #include "Branch_and_Bound.h"
+#include "Brute_Force.h"
+
 #include <iostream>
 #include <limits>
+#include <chrono>
 
 using namespace std;
 
@@ -45,7 +48,18 @@ void menu()
                 cout << "Load data first" << endl;
                 break;
             }
+            std::chrono::steady_clock::time_point start =
+                std::chrono::steady_clock::now();
             BranchAndBound bnb(towns.getTowns());
+            bnb.boundBranch();
+            std::chrono::steady_clock::time_point end =
+                std::chrono::steady_clock::now();
+            bnb.printRoute();
+            std::cout << "Czas wykonania: "
+                      << std::chrono::duration_cast<std::chrono::microseconds>(
+                             end - start)
+                             .count()
+                      << "us\n";
             break;
         }
         case 'd': // DP
@@ -56,12 +70,26 @@ void menu()
             }
             break;
         case 'f': // BF
+        {
             if (towns.getTowns().empty())
             {
                 cout << "Load data first" << endl;
                 break;
             }
+            std::chrono::steady_clock::time_point start =
+                std::chrono::steady_clock::now();
+            BruteForce bf(towns.getTowns());
+            bf.bruteForce();
+            std::chrono::steady_clock::time_point end =
+                std::chrono::steady_clock::now();
+            bf.printRoute();
+            std::cout << "Czas wykonania: "
+                      << std::chrono::duration_cast<std::chrono::microseconds>(
+                             end - start)
+                             .count()
+                      << "us\n";
             break;
+        }
         case 'e': // wyjście
             break;
         default:
