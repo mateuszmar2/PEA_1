@@ -6,7 +6,7 @@
 
 using namespace std;
 
-void BruteForce::bruteForce()
+void BruteForce::startBF()
 {
     int minimum = INT_MAX;
     vector<int> temp;

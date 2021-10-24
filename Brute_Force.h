@@ -17,7 +17,7 @@ public:
         matrix = towns;
         number_of_towns = matrix[0].size();
     }
-    void bruteForce(); // główna część algorytmu
+    void startBF();    // główna część algorytmu
     void printRoute(); // wyświela wynik
 };
 
