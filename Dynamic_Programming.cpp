@@ -5,6 +5,16 @@
 
 using namespace std;
 
+DynamicProgramming::DynamicProgramming(std::vector<std::vector<int>> towns)
+{
+    matrix = towns;
+    number_of_towns = matrix[0].size();
+    all_verticles_bits = 1 << number_of_towns; // all_verticles_bits = 2^number_of_towns
+    // sub_problems i track to vectory o rozmiarze number_of_towns na 2^number_of_towns wypełnione wartościami -1
+    sub_problems = std::vector<std::vector<int>>(number_of_towns, std::vector<int>(all_verticles_bits, -1));
+    track = std::vector<std::vector<int>>(number_of_towns, std::vector<int>(all_verticles_bits, -1));
+}
+
 void DynamicProgramming::startDP()
 {
     all_verticles_bits--; // ustawiamy 1 na indeksach odpowiadających wierzchołkom

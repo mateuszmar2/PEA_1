@@ -6,6 +6,12 @@
 
 using namespace std;
 
+BruteForce::BruteForce(std::vector<std::vector<int>> towns)
+{
+    matrix = towns;
+    number_of_towns = matrix[0].size();
+}
+
 void BruteForce::startBF()
 {
     int minimum = INT_MAX;

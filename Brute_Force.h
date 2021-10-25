@@ -12,11 +12,7 @@ private:
     std::vector<int> route;
 
 public:
-    BruteForce(std::vector<std::vector<int>> towns)
-    {
-        matrix = towns;
-        number_of_towns = matrix[0].size();
-    }
+    BruteForce(std::vector<std::vector<int>> towns);
     void startBF();    // główna część algorytmu
     void printRoute(); // wyświela wynik
 };

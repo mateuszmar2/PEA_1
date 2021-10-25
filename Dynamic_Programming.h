@@ -21,15 +21,7 @@ private:
     void calculateRoute(int start_vertex, int set_of_vertices);
 
 public:
-    DynamicProgramming(std::vector<std::vector<int>> towns)
-    {
-        matrix = towns;
-        number_of_towns = matrix[0].size();
-        all_verticles_bits = 1 << number_of_towns; // all_verticles_bits = 2^number_of_towns
-        // sub_problems i track to vectory o rozmiarze number_of_towns na 2^number_of_towns wypełnione wartościami -1
-        sub_problems = std::vector<std::vector<int>>(number_of_towns, std::vector<int>(all_verticles_bits, -1));
-        track = std::vector<std::vector<int>>(number_of_towns, std::vector<int>(all_verticles_bits, -1));
-    }
+    DynamicProgramming(std::vector<std::vector<int>> towns);
     void startDP(); // rozpoczęcie algorytmu
     // start_vertex to wierzchołek początkowy z jakiego wychodzimy, set_of_vertices to zbiór wierzchołków wyrażony bitowo
     // metoda liczy koszt najlepszej ścieżki od startowego do i przez wierzchołki ze zbioru
