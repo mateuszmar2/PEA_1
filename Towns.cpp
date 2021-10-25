@@ -1,8 +1,21 @@
 #include "Towns.h"
 #include <iostream>
 #include <fstream>
+#include <cstdlib>
+#include <ctime>
 
 using namespace std;
+
+void Towns::generateRandomData(int size)
+{
+    srand(time(NULL));
+    // vector wypełniony taką ilością vectorów, z wartością 0, ile jest miast
+    vector<vector<int>> temp_towns(size, vector<int>(size, 0));
+    for (int i = 0; i < size; i++)
+        for (int j = 0; j < size; j++)
+            temp_towns[i][j] = i == j ? -1 : rand() % 100;
+    towns = temp_towns;
+}
 
 void Towns::loadDataFromFile(const char *filename)
 {
@@ -35,11 +48,11 @@ void Towns::loadDataFromFile(const char *filename)
                 }
             }
         }
-        Towns::towns = temp_towns;
+        towns = temp_towns;
         file.close();
         for (int i = 0; i < temp; i++)
             towns[i][i] = -1;
-        Towns::printData();
+        printData();
     }
 }
 void Towns::printData()

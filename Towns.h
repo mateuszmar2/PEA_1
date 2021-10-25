@@ -9,6 +9,7 @@ private:
     std::vector<std::vector<int>> towns;
 
 public:
+    void generateRandomData(int size);
     void loadDataFromFile(const char *filename);
     void printData();
     std::vector<std::vector<int>> getTowns();
