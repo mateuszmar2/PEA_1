@@ -5,9 +5,18 @@
 
 struct Node
 {
-    int number;            // numer wierzchołka
+    int level;             // poziom wierzchołka
     std::vector<int> path; // ścieżka od korzenia
     int bound;             // dolna granica możliwych długości poniżej danego węzła
+};
+
+// struktura pomocnicza do porównywania wierzchołków, potrzebna do kolejki
+struct nodeComparator
+{
+    bool operator()(Node a, Node b)
+    {
+        return a.bound > b.bound;
+    }
 };
 
 class BranchAndBound
@@ -15,21 +24,19 @@ class BranchAndBound
 private:
     std::vector<std::vector<int>> matrix;
     int number_of_towns;
-
-public:
-    // std::vector<std::vector<int>> reduceMatrix(std::vector<std::vector<int>> matrix_to_reduce, int &cost);
-    BranchAndBound(std::vector<std::vector<int>> towns)
-    {
-        matrix = towns;
-        number_of_towns = matrix[0].size();
-    }
+    std::vector<int> route;
+    Node m, n; // wierzchołki pomocnicze
     // sprawdzenie czy dane miasto zostało już odwiedzone
     bool visited(Node node, int city, bool column);
+
+public:
+    BranchAndBound(std::vector<std::vector<int>> towns);
     // odległość przez całą ścieżkę do danego miasta
     int pathDistance(Node node);
-    // wyznaczenie dolnego ograniczenia poprzez
-    // obliczenie sumy elementów odejmowanych od wierszy i kolumn
+    // wyznaczenie dolnego ograniczenia poprzez obliczenie sumy ścieżki i najniższych wartości w wierszach
     int lowerBound(Node node);
+    void boundBranch(); // główna część algorytmu
+    void printRoute();
 };
 
 #endif /* BRANCH_AND_BOUND_H_ */

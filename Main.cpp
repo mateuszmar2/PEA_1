@@ -71,7 +71,7 @@ void menu()
             std::chrono::steady_clock::time_point end =
                 std::chrono::steady_clock::now();
             bnb.printRoute();
-            std::cout << "Czas wykonania: "
+            std::cout << "Execution time: "
                       << std::chrono::duration_cast<std::chrono::microseconds>(
                              end - start)
                              .count()
@@ -92,7 +92,7 @@ void menu()
             std::chrono::steady_clock::time_point end =
                 std::chrono::steady_clock::now();
             dp.printRoute();
-            std::cout << "Czas wykonania: "
+            std::cout << "Execution time: "
                       << std::chrono::duration_cast<std::chrono::microseconds>(
                              end - start)
                              .count()
@@ -113,7 +113,7 @@ void menu()
             std::chrono::steady_clock::time_point end =
                 std::chrono::steady_clock::now();
             bf.printRoute();
-            std::cout << "Czas wykonania: "
+            std::cout << "Execution time: "
                       << std::chrono::duration_cast<std::chrono::microseconds>(
                              end - start)
                              .count()
