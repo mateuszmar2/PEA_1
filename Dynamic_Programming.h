@@ -9,16 +9,13 @@ private:
     std::vector<std::vector<int>> matrix;
     int number_of_towns;
     int route_cost;
-    int all_verticles_bits;
+    int all_vertices_bits;
     std::vector<int> route; // route to wierzchołki ułożone w kolejności tworzącej szukaną ścieżkę
     // w sub_problems zapisane są koszty drogi z początkowego do pierwszej składowej i z niej do i przez wierzchołki oznaczone przez drugą składową
     // np w sub_problems[2][x] jest koszt z 0 do 2 + koszt z 2 do i przez wierzchołki wyznaczane bitowo przez x
     std::vector<std::vector<int>> sub_problems;
-    // w track zapisujemy ścieżke, po kolei jak należy iść przez wierzchołki
-    // np jeśli mamy track[0][11...110] czyli z 0 przez wszystkie inne to będzie się tam znajdował pierwszy wierzchołek do jakiego należy się udać
-    std::vector<std::vector<int>> track;
     // ta metoda na podstawie wyników znajdujących się w track oblicza i wypełnia route
-    void calculateRoute(int start_vertex, int set_of_vertices);
+    void calculateRoute();
 
 public:
     DynamicProgramming(std::vector<std::vector<int>> towns);
